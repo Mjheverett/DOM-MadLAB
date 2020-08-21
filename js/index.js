@@ -1,27 +1,26 @@
-const myButton = document.getElementById('clickMe');
-const noun1 = document.getElementById('noun1');
-const noun1Input = document.getElementById('noun1Input');
-const noun2 = document.getElementById('noun2');
-const noun2Input = document.getElementById('noun2Input');
-const verb1 = document.getElementById('verb1');
-const verb1Input = document.getElementById('verb1Input');
-const bodyContainer = document.getElementById('container');
-const additionalText = 'Hey, this is rad!!!';
-const radButton = document.getElementById('radButton');
+const inputs = document.querySelectorAll('input');
+const placeholders = document.querySelectorAll('.placeholder');
+console.log(inputs);
+console.log(placeholders);
 
-myButton.addEventListener('click', function (event) {
-  event.preventDefault();
+let contentFillArray = [];
+let placeFillArray = [];
 
-  noun1.innerHTML = noun1Input.value;
-  noun2.innerHTML = noun2Input.value;
-  verb1.innerHTML = verb1Input.value;
-  noun1.classList.add('filled');
+clickMe.addEventListener('click', function (event) {
+  inputs.forEach(function (element) {
+    contentFillArray = [...contentFillArray, element.value];
+    console.log("fillarray after click", contentFillArray);
+  })
+  contentFillArray.forEach(function (element,index) {
+    placeholders[index].innerHTML = contentFillArray[index];
+    placeholders[index].className = "placeholder filled";
+    console.log("placeholders", placeholders);
+  })
 });
 
-radButton.addEventListener('click', function (event) {
-  event.preventDefault();
-
-  const newParagraph = document.createElement("p");
-  newParagraph.innerHTML = additionalText;
-  bodyContainer.appendChild(newParagraph);
-});
+//simplified version using only one foreach loop
+// clickMe.addEventListener('click', function (event) {
+//   inputs.forEach(function (element) {
+//     placeholders[index].innerHTML = element.value;
+//   });
+// });
